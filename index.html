@@ -24,6 +24,25 @@
             font-family: 'Space Grotesk', 'Inter', sans-serif;
         }
         
+        /* Mobile Safari fixes */
+        .hero-image-container {
+            -webkit-overflow-scrolling: touch;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rotating-grid {
+            -webkit-transform: rotate(-12deg) scale(1.3) translateX(2rem);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        
         /* Gentle column animations */
         @keyframes gentleDown {
             0%, 100% {
@@ -45,14 +64,17 @@
         
         .col-1 {
             animation: gentleDown 60s ease-in-out infinite;
+            -webkit-animation: gentleDown 60s ease-in-out infinite;
         }
         
         .col-2 {
             animation: gentleUp 60s ease-in-out infinite;
+            -webkit-animation: gentleUp 60s ease-in-out infinite;
         }
         
         .col-3 {
             animation: gentleDown 60s ease-in-out infinite;
+            -webkit-animation: gentleDown 60s ease-in-out infinite;
         }
     </style>
 </head>
@@ -122,8 +144,8 @@
                 </a>
             </div>
         </div>
-        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gray-50 overflow-hidden">
-            <div class="flex gap-4 -rotate-12 scale-[1.3] translate-x-8">
+        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gray-50 overflow-hidden hero-image-container">
+            <div class="flex gap-4 -rotate-12 scale-[1.3] translate-x-8 rotating-grid">
                 <!-- Column 1 - Pushes down -->
                 <div class="flex flex-col gap-4 col-1">
                     <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop" alt="" class="w-full h-auto object-cover">
