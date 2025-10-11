@@ -141,6 +141,19 @@
                 -webkit-animation: gentleUpMobile 60s ease-in-out infinite;
             }
         }
+        
+        /* Fix mobile Safari bottom spacing */
+        @media (max-width: 1023px) {
+            body {
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+            
+            footer {
+                margin-bottom: 0;
+                padding-bottom: env(safe-area-inset-bottom, 0);
+            }
+        }
     </style>
 </head>
 <body class="font-sans text-gray-900 bg-white antialiased">
@@ -195,7 +208,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-20 lg:pt-0 lg:h-screen flex flex-col lg:flex-row">
+    <section id="home" class="pt-20 lg:pt-0 min-h-screen lg:h-screen flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 order-1 lg:order-1">
             <div class="max-w-2xl">
                 <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-[1.1] text-pretty">
@@ -209,7 +222,7 @@
                 </a>
             </div>
         </div>
-        <div class="w-full lg:w-1/2 bg-gray-50 overflow-hidden relative hero-image-container order-2 lg:order-2 z-0 h-[400px] lg:h-auto">
+        <div class="w-full lg:w-1/2 bg-gray-50 overflow-hidden relative hero-image-container order-2 lg:order-2 z-0 h-[50vh] lg:h-auto">
             <div class="flex gap-4 rotating-grid">
                 <!-- Column 1 - Pushes down -->
                 <div class="flex flex-col gap-4 col-1">
