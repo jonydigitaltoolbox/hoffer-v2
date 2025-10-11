@@ -27,21 +27,155 @@
 }
 
 @layer utilities {
-  /* Single left-sliding animation for all website screenshots */
-  @keyframes slideLeft {
+  /* Elegant 3D Perspective Gallery */
+  .perspective-gallery {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1200px;
+    perspective-origin: center center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .gallery-item {
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+  }
+  
+  .image-frame {
+    position: relative;
+    width: 200px;
+    height: 280px;
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 
+      0 20px 40px rgba(0, 0, 0, 0.15),
+      0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 16px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .brand-tag {
+    background: rgba(255, 255, 255, 0.95);
+    color: #1f2937;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Individual item positioning and 3D transforms */
+  .item-1 {
+    transform: translate3d(-120px, -60px, 0) rotateY(25deg) rotateX(10deg);
+    z-index: 1;
+    animation: floatIn 1s ease-out 0.2s both;
+  }
+  
+  .item-2 {
+    transform: translate3d(0, -80px, 50px) rotateY(-15deg) rotateX(5deg);
+    z-index: 3;
+    animation: floatIn 1s ease-out 0.4s both;
+  }
+  
+  .item-3 {
+    transform: translate3d(120px, -40px, 0) rotateY(-25deg) rotateX(15deg);
+    z-index: 2;
+    animation: floatIn 1s ease-out 0.6s both;
+  }
+  
+  .item-4 {
+    transform: translate3d(-80px, 60px, -30px) rotateY(35deg) rotateX(-10deg);
+    z-index: 1;
+    animation: floatIn 1s ease-out 0.8s both;
+  }
+  
+  .item-5 {
+    transform: translate3d(80px, 80px, 20px) rotateY(-35deg) rotateX(-5deg);
+    z-index: 2;
+    animation: floatIn 1s ease-out 1s both;
+  }
+  
+  /* Hover effects */
+  .gallery-item:hover {
+    z-index: 10;
+  }
+  
+  .gallery-item:hover .image-frame {
+    transform: scale(1.1) rotateY(0deg) rotateX(0deg);
+  }
+  
+  .gallery-item:hover .gallery-image {
+    box-shadow: 
+      0 30px 60px rgba(0, 0, 0, 0.25),
+      0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .gallery-item:hover .image-overlay {
+    opacity: 1;
+  }
+  
+  /* Float in animation */
+  @keyframes floatIn {
     0% {
-      transform: translateX(100%);
       opacity: 0;
+      transform: translate3d(0, 100px, -200px) rotateY(0deg) rotateX(0deg);
     }
     100% {
-      transform: translateX(0);
       opacity: 1;
+      transform: translate3d(var(--translate-x), var(--translate-y), var(--translate-z)) rotateY(var(--rotate-y)) rotateX(var(--rotate-x));
     }
   }
   
-  .animate-slide-left {
-    animation: slideLeft 2s ease-out forwards;
-    opacity: 0;
+  /* Set custom properties for each item's final position */
+  .item-1 { --translate-x: -120px; --translate-y: -60px; --translate-z: 0; --rotate-y: 25deg; --rotate-x: 10deg; }
+  .item-2 { --translate-x: 0; --translate-y: -80px; --translate-z: 50px; --rotate-y: -15deg; --rotate-x: 5deg; }
+  .item-3 { --translate-x: 120px; --translate-y: -40px; --translate-z: 0; --rotate-y: -25deg; --rotate-x: 15deg; }
+  .item-4 { --translate-x: -80px; --translate-y: 60px; --translate-z: -30px; --rotate-y: 35deg; --rotate-x: -10deg; }
+  .item-5 { --translate-x: 80px; --translate-y: 80px; --translate-z: 20px; --rotate-y: -35deg; --rotate-x: -5deg; }
+  
+  /* Mobile responsive adjustments */
+  @media (max-width: 1024px) {
+    .image-frame {
+      width: 140px;
+      height: 200px;
+    }
+    
+    .item-1 { transform: translate3d(-80px, -40px, 0) rotateY(25deg) rotateX(10deg); }
+    .item-2 { transform: translate3d(0, -50px, 30px) rotateY(-15deg) rotateX(5deg); }
+    .item-3 { transform: translate3d(80px, -30px, 0) rotateY(-25deg) rotateX(15deg); }
+    .item-4 { transform: translate3d(-60px, 40px, -20px) rotateY(35deg) rotateX(-10deg); }
+    .item-5 { transform: translate3d(60px, 50px, 15px) rotateY(-35deg) rotateX(-5deg); }
   }
 }
 
