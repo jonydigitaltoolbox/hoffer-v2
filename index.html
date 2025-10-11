@@ -116,11 +116,29 @@
             -webkit-animation: gentleDown 60s ease-in-out infinite;
         }
         
-        /* Mobile: clean grid with no offset */
+        /* Mobile: clean grid with no offset but keep up animation */
         @media (max-width: 1023px) {
+            @keyframes gentleUpMobile {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-50px);
+                }
+            }
+            
+            @-webkit-keyframes gentleUpMobile {
+                0%, 100% {
+                    -webkit-transform: translateY(0);
+                }
+                50% {
+                    -webkit-transform: translateY(-50px);
+                }
+            }
+            
             .col-2 {
-                animation: gentleDown 60s ease-in-out infinite;
-                -webkit-animation: gentleDown 60s ease-in-out infinite;
+                animation: gentleUpMobile 60s ease-in-out infinite;
+                -webkit-animation: gentleUpMobile 60s ease-in-out infinite;
             }
         }
     </style>
