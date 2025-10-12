@@ -154,6 +154,53 @@
                 padding-bottom: env(safe-area-inset-bottom, 0);
             }
         }
+        
+        /* Featured Work hover effects */
+        .work-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .work-item .static-image {
+            display: block;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .work-item .hover-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+        
+        .work-item:hover .static-image {
+            opacity: 0;
+            transition: none;
+        }
+        
+        .work-item:hover .hover-gif {
+            opacity: 1;
+            transition: none;
+        }
+        
+        .work-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem;
+            z-index: 3;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-900 bg-white antialiased">
@@ -252,7 +299,7 @@
     <section class="lg:min-h-screen flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
             <div class="max-w-2xl">
-                <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Identity / Roots</p>
+                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Identity / Roots</p>-->
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-pretty">
                     We're a creative operations studio. Built in Montreal, working globally.
                 </h2>
@@ -275,7 +322,7 @@
     <section class="lg:min-h-screen flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-white">
             <div class="max-w-2xl">
-                <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Beliefs</p>
+                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Beliefs</p>-->
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
                     We're grounded in a few simple truths:
                 </h2>
@@ -312,7 +359,7 @@
     <section id="work" class="lg:min-h-screen flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
             <div class="max-w-2xl">
-                <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">What We Do</p>
+                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">What We Do</p>-->
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
                     We specialize in helping fashion and wellness brands grow through:
                 </h2>
@@ -349,11 +396,76 @@
         </div>
     </section>
     
+    <!-- Featured Work Section -->
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Featured Work</p>-->
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
+                Recent projects we're proud of
+            </h2>
+            
+            <!-- Work Grid -->
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-7xl">
+                    
+                    <!-- Work Item 1 -->
+                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                        <img src="img/hoffer-berle.png" alt="Project 1" class="static-image w-full h-full object-cover">
+                        <img src="img/hoffer-berle.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
+                        <div class="overlay">
+                            <h3 class="font-display text-2xl font-bold text-white mb-2">Berle</h3>
+                            <p class="text-gray-300">Shopify Build / Lifecycle Marketing</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Work Item 2 -->
+                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                        <img src="img/hoffer-toolbox.png" alt="Project 1" class="static-image w-full h-full object-cover">
+                        <img src="img/hoffer-toolbox.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
+                        <div class="overlay">
+                            <h3 class="font-display text-2xl font-bold text-white mb-2">Digital Toolbox</h3>
+                            <p class="text-gray-300">Branding / Operation Strategy</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Work Item 3 -->
+                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                        <img src="img/hoffer-socialcitizen.png" alt="Project 1" class="static-image w-full h-full object-cover">
+                        <img src="img/hoffer-socialcitizen.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
+                        <div class="overlay">
+                            <h3 class="font-display text-2xl font-bold text-white mb-2">Social Citizen</h3>
+                            <p class="text-gray-300">Shopify Build / Creative</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Work Item 4 -->
+                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                        <img src="img/hoffer-crooksncastles.png" alt="Project 1" class="static-image w-full h-full object-cover">
+                        <img src="img/hoffer-crooksncastles.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
+                        <div class="overlay">
+                            <h3 class="font-display text-2xl font-bold text-white mb-2">Crooks & Castles</h3>
+                            <p class="text-gray-300">Shopify Plus / Digital Strategy</p>
+                        </div>
+                    </a>
+
+                    <!-- Work Item 5 -->
+                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                        <img src="img/hoffer-bgl.webp" alt="Project 1" class="static-image w-full h-full object-cover">
+                        <img src="img/hoffer-bgl.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
+                        <div class="overlay">
+                            <h3 class="font-display text-2xl font-bold text-white mb-2">Big Georges Laraque</h3>
+                            <p class="text-gray-300">Shopify &amp; Amazon / Lifecycle Marketing</p>
+                        </div>
+                    </a>                    
+                    
+            </div>
+        </div>
+    </section>
+    
     <!-- Partners / Tech Stack Section -->
     <section id="services" class="lg:min-h-screen flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-white">
             <div class="max-w-2xl">
-                <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Our Partners / Tech Stack</p>
+                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Our Partners / Tech Stack</p>-->
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-pretty">
                     Great commerce is never just one tool. It's a system.
                 </h2>
@@ -382,7 +494,10 @@
     <section id="about" class="lg:min-h-screen flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
             <div class="max-w-2xl">
-                <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Proof / Differentiator</p>
+                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Proof / Differentiator</p>-->
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
+                    We're a studio, not a factory.
+                </h2>
                 <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
                     <p>
                         We're not a volume-driven agency. We're a studio, intentional by design. We take on fewer brands so we can go deeper — embedding ourselves in the way you think, work, and grow.
@@ -402,7 +517,7 @@
     <section class="lg:min-h-screen flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-white">
             <div class="max-w-2xl">
-                <p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Closing / CTA</p>
+                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Closing / CTA</p>-->
                 <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight text-pretty">
                     Ready to grow beyond a storefront?
                 </h2>
@@ -526,6 +641,18 @@
                             block: 'start'
                         });
                     }
+                }
+            });
+        });
+        
+        // Reset GIFs to frame 0 when hover ends
+        document.querySelectorAll('.work-item').forEach(item => {
+            item.addEventListener('mouseleave', () => {
+                const gif = item.querySelector('.hover-gif');
+                if (gif && gif.src.includes('.gif')) {
+                    const src = gif.src;
+                    gif.src = '';
+                    gif.src = src;
                 }
             });
         });
