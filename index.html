@@ -201,6 +201,81 @@
             padding: 2rem;
             z-index: 3;
         }
+        
+        /* Brand logos styling */
+        .brand-logo {
+            filter: grayscale(100%) opacity(0.6);
+            transition: filter 0.3s ease;
+        }
+        
+        .brand-logo:hover {
+            filter: grayscale(0%) opacity(1);
+        }
+        
+        /* Marquee logo section */
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .partner-logo {
+            display: inline-block;
+            width: auto;
+            margin: 0 2rem;
+            filter: grayscale(100%) opacity(0.5);
+            transition: filter 0.3s ease;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0%) opacity(1);
+        }
+        
+        /* Individual logo sizing */
+        .logo-shopify { height: 23px; }
+        .logo-omnisend { height: 22px; }
+        .logo-klaviyo { height: 21px; }
+        .logo-appstle { height: 20px; }
+        .logo-yotpo { height: 20px; }
+        .logo-rebuy { height: 18px; }
+        .logo-smile { height: 15px; }
+        .logo-apparel { height: 17px; }
+        .logo-gorgias { height: 16px; }
+        .logo-heatmap { height: 16px; }
+        .logo-order-desk { height: 15px; }
+        .logo-quiz-kit { height: 12px; }
+        
+        @media (max-width: 768px) {
+            .partner-logo {
+                margin: 0 1.5rem;
+            }
+            .logo-shopify { height: 16px; }
+            .logo-omnisend { height: 15px; }
+            .logo-klaviyo { height: 14px; }
+            .logo-appstle { height: 14px; }
+            .logo-yotpo { height: 13px; }
+            .logo-rebuy { height: 13px; }
+            .logo-smile { height: 12px; }
+            .logo-apparel { height: 12px; }
+            .logo-gorgias { height: 10px; }
+            .logo-heatmap { height: 10px; }
+            .logo-order-desk { height: 10px; }
+            .logo-quiz-kit { height: 9px; }
+        }
     </style>
 </head>
 <body class="font-sans text-gray-900 bg-white antialiased">
@@ -291,6 +366,39 @@
                     <img src="img/6.jpg" alt="" class="w-full h-auto object-cover">
                     <img src="img/2.jpg" alt="" class="w-full h-auto object-cover">
                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Partner Logos Marquee -->
+    <section class="py-6 bg-white border-y border-gray-100">
+        <div class="marquee">
+            <div class="marquee-content">
+                <img src="img/partner-logos/logo-shopify-partner.png" alt="Shopify Partner" class="partner-logo logo-shopify">
+                <img src="img/partner-logos/logo-klaviyo.png" alt="Klaviyo" class="partner-logo logo-klaviyo">
+                <img src="img/partner-logos/logo-yotpo.png" alt="Yotpo" class="partner-logo logo-yotpo">
+                <img src="img/partner-logos/logo-rebuy.png" alt="Rebuy" class="partner-logo logo-rebuy">
+                <img src="img/partner-logos/logo-gorgias.png" alt="Gorgias" class="partner-logo logo-gorgias">
+                <img src="img/partner-logos/logo-omnisend-partner.png" alt="Omnisend" class="partner-logo logo-omnisend">
+                <img src="img/partner-logos/logo-smile.png" alt="Smile" class="partner-logo logo-smile">
+                <img src="img/partner-logos/logo-appstle.png" alt="Appstle" class="partner-logo logo-appstle">
+                <img src="img/partner-logos/logo-quiz-kit.png" alt="Quiz Kit" class="partner-logo logo-quiz-kit">
+                <img src="img/partner-logos/logo-apparel-magic.png" alt="Apparel Magic" class="partner-logo logo-apparel">
+                <img src="img/partner-logos/logo-order-desk.png" alt="Order Desk" class="partner-logo logo-order-desk">
+                <img src="img/partner-logos/logo-heatmap.png" alt="Heatmap" class="partner-logo logo-heatmap">
+                <!-- Duplicate for seamless loop -->
+                <img src="img/partner-logos/logo-shopify-partner.png" alt="Shopify Partner" class="partner-logo logo-shopify">
+                <img src="img/partner-logos/logo-klaviyo.png" alt="Klaviyo" class="partner-logo logo-klaviyo">
+                <img src="img/partner-logos/logo-yotpo.png" alt="Yotpo" class="partner-logo logo-yotpo">
+                <img src="img/partner-logos/logo-rebuy.png" alt="Rebuy" class="partner-logo logo-rebuy">
+                <img src="img/partner-logos/logo-gorgias.png" alt="Gorgias" class="partner-logo logo-gorgias">
+                <img src="img/partner-logos/logo-omnisend-partner.png" alt="Omnisend" class="partner-logo logo-omnisend">
+                <img src="img/partner-logos/logo-smile.png" alt="Smile" class="partner-logo logo-smile">
+                <img src="img/partner-logos/logo-appstle.png" alt="Appstle" class="partner-logo logo-appstle">
+                <img src="img/partner-logos/logo-quiz-kit.png" alt="Quiz Kit" class="partner-logo logo-quiz-kit">
+                <img src="img/partner-logos/logo-apparel-magic.png" alt="Apparel Magic" class="partner-logo logo-apparel">
+                <img src="img/partner-logos/logo-order-desk.png" alt="Order Desk" class="partner-logo logo-order-desk">
+                <img src="img/partner-logos/logo-heatmap.png" alt="Heatmap" class="partner-logo logo-heatmap">
             </div>
         </div>
     </section>
@@ -510,6 +618,43 @@
         </div>
         <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-indigo-900 to-indigo-700 relative">
             <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">🎯</div>
+        </div>
+    </section>
+    
+    <!-- Select Clients Section -->
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-12">
+                Select Clients
+            </h2>
+            
+            <!-- 4x2 Grid -->
+            <div class="max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/1habs.png" alt="Habs" class="brand-logo h-auto max-h-[40px] lg:max-h-[60px] w-auto">
+                </div>
+                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/2diesel.png" alt="Diesel" class="brand-logo h-auto max-h-[38px] lg:max-h-[55px] w-auto">
+                </div>
+                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/3stokes.png" alt="Stokes" class="brand-logo h-auto max-h-[24px] lg:max-h-[35px] w-auto">
+                </div>
+                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/4thorlo.png" alt="Thorlo" class="brand-logo h-auto max-h-[24px] lg:max-h-[35px] w-auto">
+                </div>
+                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/5mashable.png" alt="Mashable" class="brand-logo h-auto max-h-[34px] lg:max-h-[50px] w-auto">
+                </div>
+                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/6ben-jerry.png" alt="Ben & Jerry's" class="brand-logo h-auto max-h-[30px] lg:max-h-[45px] w-auto">
+                </div>
+                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/7vintage.png" alt="Vintage" class="brand-logo h-auto max-h-[24px] lg:max-h-[35px] w-auto">
+                </div>
+                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/8dominos.png" alt="Domino's" class="brand-logo h-auto max-h-[28px] lg:max-h-[40px] w-auto">
+                </div>
+            </div>
         </div>
     </section>
     
