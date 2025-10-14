@@ -920,7 +920,8 @@
     </script>
 
     <!-- Hidden Netlify Form for Brief Submission -->
-    <form name="project-brief" netlify netlify-honeypot="bot-field" hidden>
+    <form name="project-brief" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" style="display:none;">
+        <input type="hidden" name="form-name" value="project-brief" />
         <input type="text" name="bot-field" />
         <input type="text" name="name" />
         <input type="text" name="company" />
