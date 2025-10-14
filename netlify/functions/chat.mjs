@@ -23,13 +23,16 @@ After gathering all information, create a brief summary and ask them to confirm.
 
 Keep responses brief (2-3 sentences max). Be conversational, not robotic.`;
 
-export default async function handler(req, context) {
-  if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
+export const handler = async (event, context) => {
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: 'Method not allowed'
+    };
   }
 
   try {
-    const { messages } = await req.json();
+    const { messages } = JSON.parse(event.body);
 
     const result = streamText({
       model: openai('gpt-4o-mini'), // Cheapest GPT-4 class model
@@ -44,17 +47,11 @@ export default async function handler(req, context) {
     return result.toTextStreamResponse();
   } catch (error) {
     console.error('Chat error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to process request' }),
-      { 
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
+    return {
+      statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Failed to process request' })
+    };
   }
-}
-
-export const config = {
-  path: '/api/chat',
 };
 

@@ -18,13 +18,16 @@ const briefSchema = z.object({
   brief_summary: z.string().describe('A concise 2-3 sentence project brief summarizing their needs'),
 });
 
-export default async function handler(req, context) {
-  if (req.method !== 'POST') {
-    return new Response('Method not allowed', { status: 405 });
+export const handler = async (event, context) => {
+  if (event.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: 'Method not allowed'
+    };
   }
 
   try {
-    const { conversation } = await req.json();
+    const { conversation } = JSON.parse(event.body);
 
     // Use AI to extract structured data from conversation
     const result = await generateObject({
@@ -38,26 +41,18 @@ ${conversation}
 Extract the client's information into structured data.`,
     });
 
-    return new Response(
-      JSON.stringify(result.object),
-      { 
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(result.object)
+    };
   } catch (error) {
     console.error('Extract error:', error);
-    return new Response(
-      JSON.stringify({ error: 'Failed to extract data' }),
-      { 
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
+    return {
+      statusCode: 500,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Failed to extract data' })
+    };
   }
-}
-
-export const config = {
-  path: '/api/extract-brief',
 };
 
