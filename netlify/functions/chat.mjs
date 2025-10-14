@@ -1,4 +1,4 @@
-import { streamText } from 'ai';
+import { generateText } from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
 
 const openai = createOpenAI({
@@ -34,7 +34,7 @@ export const handler = async (event, context) => {
   try {
     const { messages } = JSON.parse(event.body);
 
-    const result = streamText({
+    const result = await generateText({
       model: openai('gpt-4o-mini'), // Cheapest GPT-4 class model
       messages: [
         { role: 'system', content: systemPrompt },
@@ -44,13 +44,17 @@ export const handler = async (event, context) => {
       maxTokens: 500,
     });
 
-    return result.toTextStreamResponse();
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: result.text })
+    };
   } catch (error) {
     console.error('Chat error:', error);
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'Failed to process request' })
+      body: JSON.stringify({ error: 'Failed to process request', details: error.message })
     };
   }
 };

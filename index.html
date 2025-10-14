@@ -1108,28 +1108,20 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error('Failed to get response');
+                    const errorData = await response.json().catch(() => ({}));
+                    console.error('Response error:', errorData);
+                    throw new Error(errorData.details || 'Failed to get response');
                 }
 
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder();
-                let accumulatedText = '';
-
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-
-                    const chunk = decoder.decode(value, { stream: true });
-                    accumulatedText += chunk;
-                    updateStreamingMessage(streamingDiv, accumulatedText);
-                }
+                const data = await response.json();
+                const assistantMessage = data.message;
 
                 // Remove streaming message and add final message
                 streamingDiv.remove();
-                addAssistantMessage(accumulatedText);
+                addAssistantMessage(assistantMessage);
 
                 // Check if AI wants to submit the brief
-                if (accumulatedText.includes('SUBMIT_BRIEF||')) {
+                if (assistantMessage.includes('SUBMIT_BRIEF||')) {
                     await submitBrief();
                 }
 
