@@ -921,6 +921,7 @@
 
     <!-- Hidden Netlify Form for Brief Submission -->
     <form name="project-brief" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="bot-field" />
         <input type="text" name="name" />
         <input type="text" name="company" />
         <input type="email" name="email" />
@@ -1167,19 +1168,23 @@
                 // Submit to Netlify form
                 const formData = new FormData();
                 formData.append('form-name', 'project-brief');
-                formData.append('name', briefData.name);
-                formData.append('company', briefData.company);
-                formData.append('email', briefData.email);
-                formData.append('business_type', briefData.business_type);
-                formData.append('project_needs', briefData.project_needs);
-                formData.append('budget', briefData.budget);
-                formData.append('timeline', briefData.timeline);
+                formData.append('bot-field', ''); // Honeypot field
+                formData.append('name', briefData.name || 'N/A');
+                formData.append('company', briefData.company || 'N/A');
+                formData.append('email', briefData.email || 'N/A');
+                formData.append('business_type', briefData.business_type || 'N/A');
+                formData.append('project_needs', briefData.project_needs || 'N/A');
+                formData.append('budget', briefData.budget || 'N/A');
+                formData.append('timeline', briefData.timeline || 'N/A');
                 formData.append('full_conversation', conversationText);
-                formData.append('brief_summary', briefData.brief_summary);
+                formData.append('brief_summary', briefData.brief_summary || 'N/A');
 
                 const submitResponse = await fetch('/', {
                     method: 'POST',
-                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(formData).toString(),
                 });
 
                 if (submitResponse.ok) {
@@ -1190,6 +1195,7 @@
                     sendButton.disabled = true;
                     sendButton.textContent = 'Submitted';
                 } else {
+                    console.error('Form submission response:', submitResponse.status, submitResponse.statusText);
                     throw new Error('Form submission failed');
                 }
 
