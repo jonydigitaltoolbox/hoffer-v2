@@ -218,8 +218,16 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: #3b82f6; /* Fallback for browsers that don't support gradient text */
             position: relative;
             display: inline-block;
+        }
+        
+        /* Safari-specific fix */
+        @supports (-webkit-background-clip: text) {
+            .hero-highlight {
+                color: transparent;
+            }
         }
         
         .hero-highlight::after {
@@ -240,9 +248,17 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: #10b981; /* Fallback for browsers that don't support gradient text */
             position: relative;
             display: inline-block;
             isolation: isolate;
+        }
+        
+        /* Safari-specific fix */
+        @supports (-webkit-background-clip: text) {
+            .hero-highlight-bold {
+                color: transparent;
+            }
         }
         
         .hero-highlight-bold::after {
@@ -263,9 +279,17 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: #10b981; /* Fallback for browsers that don't support gradient text */
             position: relative;
             display: inline-block;
             isolation: isolate;
+        }
+        
+        /* Safari-specific fix */
+        @supports (-webkit-background-clip: text) {
+            .text-highlight-green {
+                color: transparent;
+            }
         }
         
         .text-highlight-green::before {
@@ -623,30 +647,30 @@
             </h2>
             
             <!-- 4x2 Grid -->
-            <div class="max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
-                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
-                    <img src="img/brand-logos/1habs.png" alt="Habs" class="brand-logo h-auto max-h-[40px] lg:max-h-[60px] w-auto">
+            <div class="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
+                <div class="flex items-center justify-center h-28 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/1habs.png" alt="Habs" class="brand-logo h-auto max-h-[35px] lg:max-h-[60px] w-auto">
                 </div>
-                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
-                    <img src="img/brand-logos/2diesel.png" alt="Diesel" class="brand-logo h-auto max-h-[38px] lg:max-h-[55px] w-auto">
+                <div class="flex items-center justify-center h-28 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/2diesel.png" alt="Diesel" class="brand-logo h-auto max-h-[33px] lg:max-h-[55px] w-auto">
                 </div>
-                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
-                    <img src="img/brand-logos/3stokes.png" alt="Stokes" class="brand-logo h-auto max-h-[24px] lg:max-h-[35px] w-auto">
+                <div class="flex items-center justify-center h-28 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/3stokes.png" alt="Stokes" class="brand-logo h-auto max-h-[22px] lg:max-h-[35px] w-auto">
                 </div>
-                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
-                    <img src="img/brand-logos/4thorlo.png" alt="Thorlo" class="brand-logo h-auto max-h-[24px] lg:max-h-[35px] w-auto">
+                <div class="flex items-center justify-center h-28 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/4thorlo.png" alt="Thorlo" class="brand-logo h-auto max-h-[22px] lg:max-h-[35px] w-auto">
                 </div>
-                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
-                    <img src="img/brand-logos/5mashable.png" alt="Mashable" class="brand-logo h-auto max-h-[34px] lg:max-h-[50px] w-auto">
+                <div class="flex items-center justify-center h-28 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/5mashable.png" alt="Mashable" class="brand-logo h-auto max-h-[30px] lg:max-h-[50px] w-auto">
                 </div>
-                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
-                    <img src="img/brand-logos/6ben-jerry.png" alt="Ben & Jerry's" class="brand-logo h-auto max-h-[30px] lg:max-h-[45px] w-auto">
+                <div class="flex items-center justify-center h-28 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/6ben-jerry.png" alt="Ben & Jerry's" class="brand-logo h-auto max-h-[26px] lg:max-h-[45px] w-auto">
                 </div>
-                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
-                    <img src="img/brand-logos/7vintage.png" alt="Vintage" class="brand-logo h-auto max-h-[24px] lg:max-h-[35px] w-auto">
+                <div class="flex items-center justify-center h-28 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/7vintage.png" alt="Vintage" class="brand-logo h-auto max-h-[22px] lg:max-h-[35px] w-auto">
                 </div>
-                <div class="flex items-center justify-center h-32 lg:h-36 bg-gray-50">
-                    <img src="img/brand-logos/8dominos.png" alt="Domino's" class="brand-logo h-auto max-h-[28px] lg:max-h-[40px] w-auto">
+                <div class="flex items-center justify-center h-28 lg:h-36 bg-gray-50">
+                    <img src="img/brand-logos/8dominos.png" alt="Domino's" class="brand-logo h-auto max-h-[24px] lg:max-h-[40px] w-auto">
                 </div>
             </div>
         </div>
