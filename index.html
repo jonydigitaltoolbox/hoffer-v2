@@ -212,6 +212,72 @@
             filter: grayscale(0%) opacity(1);
         }
         
+        /* Hero highlight words */
+        .hero-highlight {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-highlight::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.1em;
+            height: 0.3em;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        /* Emphasis on "companies" - matches stores style */
+        .hero-highlight-bold {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-highlight-bold::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.1em;
+            height: 0.35em;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            opacity: 0.2;
+            z-index: -1;
+        }
+        
+        /* Small text highlights - for belief section */
+        .text-highlight-green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            isolation: isolate;
+        }
+        
+        .text-highlight-green::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.25em;
+            height: 0.4em;
+            background: rgba(16, 185, 129, 0.25);
+            z-index: -1;
+        }
+        
         /* Marquee logo section */
         .marquee {
             overflow: hidden;
@@ -335,7 +401,7 @@
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 order-1 lg:order-1">
             <div class="max-w-2xl">
                 <h1 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-[1.1] text-pretty">
-                    We don't just build stores. We help build companies.
+                    We don't just build <span class="hero-highlight">stores</span>. We help build <span class="hero-highlight-bold">companies</span>.
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-700 mb-12">
                     For fashion and wellness brands, we design Shopify ecosystems that look beautiful, run smoothly, and grow with intention.
@@ -405,7 +471,7 @@
     </section>
     
     <!-- Identity Section -->
-    <section class="lg:min-h-screen flex flex-col lg:flex-row">
+    <section class="flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
             <div class="max-w-2xl">
                 <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Identity / Roots</p>-->
@@ -422,86 +488,8 @@
                 </div>
             </div>
         </div>
-        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-blue-900 to-blue-700 relative">
-            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">🌍</div>
-        </div>
-    </section>
-
-    <!-- Beliefs Section -->
-    <section class="lg:min-h-screen flex flex-col lg:flex-row">
-        <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-white">
-            <div class="max-w-2xl">
-                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Beliefs</p>-->
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
-                    We're grounded in a few simple truths:
-                </h2>
-                <ul class="space-y-6 text-lg text-gray-700">
-                    <li class="flex gap-4">
-                        <span class="text-gray-400 flex-shrink-0">•</span>
-                        <span><strong class="text-gray-900">Design is strategy.</strong> Good design isn't decoration; it drives growth.</span>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="text-gray-400 flex-shrink-0">•</span>
-                        <span><strong class="text-gray-900">Retention is growth.</strong> Loyalty and lifetime value outlast ad spend.</span>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="text-gray-400 flex-shrink-0">•</span>
-                        <span><strong class="text-gray-900">Systems create freedom.</strong> Scale is only sustainable with the right backend.</span>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="text-gray-400 flex-shrink-0">•</span>
-                        <span><strong class="text-gray-900">Every detail matters.</strong> From product detail pages to post-purchase emails, consistency builds trust.</span>
-                    </li>
-                    <li class="flex gap-4">
-                        <span class="text-gray-400 flex-shrink-0">•</span>
-                        <span><strong class="text-gray-900">Small teams work sharper.</strong> We stay focused so you always work with senior expertise.</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-purple-900 to-purple-700 relative">
-            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">💡</div>
-        </div>
-    </section>
-
-    <!-- What We Do Section -->
-    <section id="work" class="lg:min-h-screen flex flex-col lg:flex-row">
-        <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
-            <div class="max-w-2xl">
-                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">What We Do</p>-->
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
-                    We specialize in helping fashion and wellness brands grow through:
-                </h2>
-                
-                <div class="space-y-8">
-                    <!-- Service 1 -->
-                    <div>
-                        <h3 class="font-display text-xl font-bold mb-2">Shopify Storefronts</h3>
-                        <p class="text-gray-700">Custom builds designed to convert — flexible, editorial, and unmistakably your brand.</p>
-                    </div>
-                    
-                    <!-- Service 2 -->
-                    <div>
-                        <h3 class="font-display text-xl font-bold mb-2">Design Systems & UX</h3>
-                        <p class="text-gray-700">Modular design frameworks that make your site scalable and timeless.</p>
-                    </div>
-                    
-                    <!-- Service 3 -->
-                    <div>
-                        <h3 class="font-display text-xl font-bold mb-2">Retention & Lifecycle</h3>
-                        <p class="text-gray-700">Email, SMS, loyalty, and subscription programs that feel seamless, not salesy.</p>
-                    </div>
-                    
-                    <!-- Service 4 -->
-                    <div>
-                        <h3 class="font-display text-xl font-bold mb-2">Fractional Strategy</h3>
-                        <p class="text-gray-700">Senior-level guidance for brands who need expertise without hiring full-time.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-green-900 to-green-700 relative">
-            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">🛍️</div>
+        <div class="w-full lg:w-1/2 bg-gradient-to-br from-indigo-600 to-purple-700 relative flex items-center justify-center py-12 lg:py-20">
+            <img src="img/undraw_building-websites_k2zp.svg" alt="Building Websites" class="w-full max-w-md h-auto opacity-90">
         </div>
     </section>
     
@@ -517,7 +505,7 @@
             <div class="grid md:grid-cols-2 gap-8 lg:gap-12 max-w-7xl">
                     
                     <!-- Work Item 1 -->
-                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                    <a class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
                         <img src="img/hoffer-berle.png" alt="Project 1" class="static-image w-full h-full object-cover">
                         <img src="img/hoffer-berle.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
                         <div class="overlay">
@@ -527,7 +515,7 @@
                     </a>
                     
                     <!-- Work Item 2 -->
-                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                    <a class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
                         <img src="img/hoffer-toolbox.png" alt="Project 1" class="static-image w-full h-full object-cover">
                         <img src="img/hoffer-toolbox.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
                         <div class="overlay">
@@ -537,7 +525,7 @@
                     </a>
                     
                     <!-- Work Item 3 -->
-                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                    <a class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
                         <img src="img/hoffer-socialcitizen.png" alt="Project 1" class="static-image w-full h-full object-cover">
                         <img src="img/hoffer-socialcitizen.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
                         <div class="overlay">
@@ -547,7 +535,7 @@
                     </a>
                     
                     <!-- Work Item 4 -->
-                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                    <a class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
                         <img src="img/hoffer-crooksncastles.png" alt="Project 1" class="static-image w-full h-full object-cover">
                         <img src="img/hoffer-crooksncastles.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
                         <div class="overlay">
@@ -557,7 +545,7 @@
                     </a>
 
                     <!-- Work Item 5 -->
-                    <a href="#" class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
+                    <a class="work-item group block rounded-lg overflow-hidden aspect-[4/3] relative">
                         <img src="img/hoffer-bgl.webp" alt="Project 1" class="static-image w-full h-full object-cover">
                         <img src="img/hoffer-bgl.gif" alt="Project 1 Animation" class="hover-gif w-full h-full object-cover">
                         <div class="overlay">
@@ -568,57 +556,61 @@
                     
             </div>
         </div>
-    </section>
-    
-    <!-- Partners / Tech Stack Section -->
-    <section id="services" class="lg:min-h-screen flex flex-col lg:flex-row">
-        <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-white">
-            <div class="max-w-2xl">
-                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Our Partners / Tech Stack</p>-->
-                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-pretty">
-                    Great commerce is never just one tool. It's a system.
-                </h2>
-                <p class="text-lg text-gray-700 leading-relaxed mb-8">
-                    That's why we work with the best tech partners in the industry:
-                </p>
-                
-                <ul class="space-y-4 text-gray-700 mb-8">
-                    <li><strong class="text-gray-900">Shopify Plus</strong> for scale-ready storefronts.</li>
-                    <li><strong class="text-gray-900">Klaviyo & Postscript</strong> for lifecycle and SMS marketing.</li>
-                    <li><strong class="text-gray-900">Recharge & Yotpo</strong> for subscriptions and loyalty.</li>
-                    <li><strong class="text-gray-900">Triple Whale & GA4</strong> for clear, actionable analytics.</li>
-                </ul>
-                
-                <p class="text-lg text-gray-700">
-                    Our strength isn't just knowing the platforms. It's knowing how to make them work together to create ecosystems that last.
-                </p>
-            </div>
-        </div>
-        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-orange-900 to-orange-700 relative">
-            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">⚙️</div>
-        </div>
-    </section>
+    </section>    
 
-    <!-- Proof / Differentiator Section -->
-    <section id="about" class="lg:min-h-screen flex flex-col lg:flex-row">
+    <!-- Beliefs Section -->
+    <section class="flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
             <div class="max-w-2xl">
-                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Proof / Differentiator</p>-->
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
-                    We're a studio, not a factory.
+                    We're grounded in a few simple truths
                 </h2>
-                <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
-                    <p>
-                        We're not a volume-driven agency. We're a studio, intentional by design. We take on fewer brands so we can go deeper — embedding ourselves in the way you think, work, and grow.
-                    </p>
-                    <p>
-                        That means no handoffs to juniors. No bloated overhead. Just senior-level expertise, applied directly to your brand.
-                    </p>
+                
+                <div class="space-y-6">
+                    <!-- Belief 1 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold text-gray-900 mb-2">
+                            Design is <span class="text-highlight-green">strategy.</span>
+                        </h3>
+                        <p class="text-lg text-gray-700">Good design isn't decoration; it drives growth.</p>
+                    </div>
+                    
+                    <!-- Belief 2 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold text-gray-900 mb-2">
+                            Retention is <span class="text-highlight-green">growth.</span>
+                        </h3>
+                        <p class="text-lg text-gray-700">Loyalty and lifetime value outlast ad spend.</p>
+                    </div>
+                    
+                    <!-- Belief 3 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold text-gray-900 mb-2">
+                            Systems create <span class="text-highlight-green">freedom.</span>
+                        </h3>
+                        <p class="text-lg text-gray-700">Scale is only sustainable with the right backend.</p>
+                    </div>
+                    
+                    <!-- Belief 4 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold text-gray-900 mb-2">
+                            Every <span class="text-highlight-green">detail</span> matters.
+                        </h3>
+                        <p class="text-lg text-gray-700">From product pages to post-purchase emails, consistency builds trust.</p>
+                    </div>
+                    
+                    <!-- Belief 5 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold text-gray-900 mb-2">
+                            Small teams work <span class="text-highlight-green">sharper.</span>
+                        </h3>
+                        <p class="text-lg text-gray-700">We stay focused so you always work with senior expertise.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-indigo-900 to-indigo-700 relative">
-            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">🎯</div>
+        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-purple-900 to-purple-700 relative">
+            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">💡</div>
         </div>
     </section>
     
@@ -658,10 +650,105 @@
             </div>
         </div>
     </section>
+
+    <!-- What We Do Section -->
+    <section id="work" class="flex flex-col lg:flex-row">
+        <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
+            <div class="max-w-2xl">
+                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">What We Do</p>-->
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
+                    We specialize in helping fashion and wellness brands grow through:
+                </h2>
+                
+                <div class="space-y-8">
+                    <!-- Service 1 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold mb-2">Shopify Storefronts</h3>
+                        <p class="text-gray-700">Custom builds designed to convert — flexible, editorial, and unmistakably your brand.</p>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold mb-2">Design Systems & UX</h3>
+                        <p class="text-gray-700">Modular design frameworks that make your site scalable and timeless.</p>
+                    </div>
+                    
+                    <!-- Service 3 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold mb-2">Retention & Lifecycle</h3>
+                        <p class="text-gray-700">Email, SMS, loyalty, and subscription programs that feel seamless, not salesy.</p>
+                    </div>
+                    
+                    <!-- Service 4 -->
+                    <div>
+                        <h3 class="font-display text-xl font-bold mb-2">Fractional Strategy</h3>
+                        <p class="text-gray-700">Senior-level guidance for brands who need expertise without hiring full-time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-green-900 to-green-700 relative">
+            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">🛍️</div>
+        </div>
+    </section>
+
+    <!-- Partners / Tech Stack Section 
+    <section id="services" class="flex flex-col lg:flex-row">
+        <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-white">
+            <div class="max-w-2xl">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-pretty">
+                    Great commerce is never just one tool. It's a system.
+                </h2>
+                <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                    That's why we work with the best tech partners in the industry:
+                </p>
+                
+                <ul class="space-y-4 text-gray-700 mb-8">
+                    <li><strong class="text-gray-900">Shopify Plus</strong> for scale-ready storefronts.</li>
+                    <li><strong class="text-gray-900">Klaviyo & Postscript</strong> for lifecycle and SMS marketing.</li>
+                    <li><strong class="text-gray-900">Recharge & Yotpo</strong> for subscriptions and loyalty.</li>
+                    <li><strong class="text-gray-900">Triple Whale & GA4</strong> for clear, actionable analytics.</li>
+                </ul>
+                
+                <p class="text-lg text-gray-700">
+                    Our strength isn't just knowing the platforms. It's knowing how to make them work together to create ecosystems that last.
+                </p>
+            </div>
+        </div>
+        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-orange-900 to-orange-700 relative">
+            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">⚙️</div>
+        </div>
+    </section> -->
+
+    <!-- Proof / Differentiator Section -->
+    <section id="about" class="flex flex-col lg:flex-row">
+        <div class="w-full flex items-center px-6 lg:px-12 py-12 lg:py-20">
+            <div class="max-w-2xl">
+                <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Proof / Differentiator</p>-->
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
+                    We're a studio, not a factory.
+                </h2>
+                <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                    <p>
+                        We're not a volume-driven agency. We're a studio, intentional by design. We take on fewer brands so we can go deeper — embedding ourselves in the way you think, work, and grow.
+                    </p>
+                    <p>
+                        That means no handoffs to juniors. No bloated overhead. Just senior-level expertise, applied directly to your brand.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-indigo-900 to-indigo-700 relative">
+            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">🎯</div>
+        </div>
+        -->
+    </section>
+
     
     <!-- CTA Section -->
-    <section class="lg:min-h-screen flex flex-col lg:flex-row">
-        <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-white">
+    <section class="flex flex-col lg:flex-row">
+        <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
             <div class="max-w-2xl">
                 <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Closing / CTA</p>-->
                 <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight text-pretty">
@@ -680,7 +767,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section 
     <section id="contact" class="lg:min-h-[50vh] flex flex-col lg:flex-row">
         <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
             <div class="max-w-2xl">
@@ -697,6 +784,7 @@
             <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">📧</div>
         </div>
     </section>
+    -->
 
     <!--Footer -->
     <footer class="bg-gray-900 text-gray-300 py-16 px-6 lg:px-12">
