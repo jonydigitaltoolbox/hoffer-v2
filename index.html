@@ -242,6 +242,7 @@
             background-clip: text;
             position: relative;
             display: inline-block;
+            isolation: isolate;
         }
         
         .hero-highlight-bold::after {
@@ -657,7 +658,7 @@
             <div class="max-w-2xl">
                 <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">What We Do</p>-->
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
-                    We specialize in helping fashion and wellness brands grow through:
+                    We specialize in helping fashion and wellness brands <span class="hero-highlight-bold">grow</span> through:
                 </h2>
                 
                 <div class="space-y-8">
@@ -726,7 +727,7 @@
             <div class="max-w-2xl">
                 <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Proof / Differentiator</p>-->
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-pretty">
-                    We're a studio, not a factory.
+                    We're a <span class="hero-highlight-bold">studio</span>, not a <span class="hero-highlight">factory.</span>
                 </h2>
                 <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
                     <p>
@@ -748,10 +749,10 @@
     
     <!-- CTA Section -->
     <section class="flex flex-col lg:flex-row">
-        <div class="w-full lg:w-1/2 flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
-            <div class="max-w-2xl">
+        <div class="w-full flex items-center px-6 lg:px-12 py-12 lg:py-20 bg-gray-50">
+            <div class="">
                 <!--<p class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">Closing / CTA</p>-->
-                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight text-pretty">
+                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
                     Ready to grow beyond a storefront?
                 </h2>
                 <p class="text-xl md:text-2xl text-gray-700 mb-12">
@@ -762,9 +763,11 @@
                 </a>
             </div>
         </div>
+        <!--
         <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-rose-900 to-rose-700 relative">
             <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">🚀</div>
         </div>
+        -->
     </section>
 
     <!-- Contact Section 
