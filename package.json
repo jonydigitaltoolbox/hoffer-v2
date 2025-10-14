@@ -1,19 +1,14 @@
 {
   "name": "hoffer-v2",
   "version": "1.0.0",
-  "description": "Production-ready Tailwind CSS landing page",
+  "description": "Hoffer Studios website with AI-powered brief generation",
   "scripts": {
-    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
-    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "serve": "python3 -m http.server 8000"
+    "dev": "netlify dev"
   },
-  "keywords": ["tailwind", "css", "landing-page"],
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "tailwindcss": "^3.4.1",
-    "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35"
-  }
+  "dependencies": {
+    "@ai-sdk/openai": "^1.0.0",
+    "ai": "^4.0.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {}
 }
-

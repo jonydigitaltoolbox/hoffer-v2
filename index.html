@@ -489,7 +489,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full lg:w-1/2 bg-gradient-to-br from-indigo-600 to-purple-700 relative flex items-center justify-center py-12 lg:py-20">
+        <div class="w-full lg:w-1/2 bg-gradient-to-br from-green-600 to-emerald-700 relative flex items-center justify-center py-12 lg:py-20">
             <img src="img/undraw_building-websites_k2zp.svg" alt="Building Websites" class="w-full max-w-md h-auto opacity-90">
         </div>
     </section>
@@ -610,8 +610,8 @@
                 </div>
             </div>
         </div>
-        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-purple-900 to-purple-700 relative">
-            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">💡</div>
+        <div class="w-full lg:w-1/2 bg-gradient-to-br from-green-600 to-emerald-700 relative flex items-center justify-center py-12 lg:py-20">
+            <img src="img/undraw_team-collaboration_phnf.svg" alt="Team Collaboration" class="w-full max-w-xl h-auto opacity-90">
         </div>
     </section>
     
@@ -688,8 +688,8 @@
                 </div>
             </div>
         </div>
-        <div class="w-full lg:w-1/2 aspect-square lg:aspect-auto bg-gradient-to-br from-green-900 to-green-700 relative">
-            <div class="absolute inset-0 flex items-center justify-center text-white/10 text-9xl">🛍️</div>
+        <div class="w-full lg:w-1/2 bg-gradient-to-br from-green-600 to-emerald-700 relative flex items-center justify-center py-12 lg:py-20">
+            <img src="img/undraw_mcp-server_7kvc.svg" alt="Server Infrastructure" class="w-full max-w-xl h-auto opacity-90">
         </div>
     </section>
 
@@ -893,6 +893,295 @@
                 }
             });
         });
+    </script>
+
+    <!-- Hidden Netlify Form for Brief Submission -->
+    <form name="project-brief" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
+        <input type="text" name="company" />
+        <input type="email" name="email" />
+        <input type="text" name="business_type" />
+        <input type="text" name="project_needs" />
+        <input type="text" name="budget" />
+        <input type="text" name="timeline" />
+        <textarea name="full_conversation"></textarea>
+        <textarea name="brief_summary"></textarea>
+    </form>
+
+    <!-- AI Chat Modal -->
+    <div id="chatModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[80vh] flex flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <div>
+                    <h3 class="text-xl font-display font-bold text-gray-900">Start a Conversation</h3>
+                    <p class="text-sm text-gray-600 mt-1">Tell us about your project</p>
+                </div>
+                <button id="closeModal" class="text-gray-400 hover:text-gray-600 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Messages Container -->
+            <div id="messagesContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <!-- Messages will be inserted here -->
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-6 border-t border-gray-200">
+                <form id="chatForm" class="flex gap-2">
+                    <input 
+                        type="text" 
+                        id="chatInput" 
+                        placeholder="Type your message..."
+                        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        autocomplete="off"
+                    />
+                    <button 
+                        type="submit" 
+                        id="sendButton"
+                        class="px-6 py-3 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Script -->
+    <script>
+        const chatModal = document.getElementById('chatModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        const messagesContainer = document.getElementById('messagesContainer');
+        
+        let messages = [];
+        let isStreaming = false;
+
+        // Open modal when "Start a Conversation" button is clicked
+        document.querySelectorAll('a[href="#contact"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                openChat();
+            });
+        });
+
+        function openChat() {
+            chatModal.classList.remove('hidden');
+            chatModal.classList.add('flex');
+            chatInput.focus();
+            
+            // Add initial message if no messages yet
+            if (messages.length === 0) {
+                addAssistantMessage("Hey there! 👋 I'm here to learn more about your project. Let's start with the basics — what's your name and what's your company called?");
+            }
+        }
+
+        function closeChat() {
+            chatModal.classList.add('hidden');
+            chatModal.classList.remove('flex');
+        }
+
+        closeModalBtn.addEventListener('click', closeChat);
+        chatModal.addEventListener('click', (e) => {
+            if (e.target === chatModal) closeChat();
+        });
+
+        function addUserMessage(text) {
+            messages.push({ role: 'user', content: text });
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex justify-end';
+            messageDiv.innerHTML = `
+                <div class="bg-gray-900 text-white px-4 py-3 rounded-lg max-w-[80%]">
+                    ${escapeHtml(text)}
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addAssistantMessage(text) {
+            messages.push({ role: 'assistant', content: text });
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex justify-start';
+            messageDiv.innerHTML = `
+                <div class="bg-gray-100 text-gray-900 px-4 py-3 rounded-lg max-w-[80%]">
+                    ${escapeHtml(text)}
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addStreamingMessage() {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex justify-start';
+            messageDiv.id = 'streamingMessage';
+            messageDiv.innerHTML = `
+                <div class="bg-gray-100 text-gray-900 px-4 py-3 rounded-lg max-w-[80%]">
+                    <span class="inline-block">●</span>
+                    <span class="inline-block animate-pulse">●</span>
+                    <span class="inline-block animate-pulse delay-100">●</span>
+                </div>
+            `;
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+            return messageDiv;
+        }
+
+        function updateStreamingMessage(element, text) {
+            element.querySelector('div').innerHTML = escapeHtml(text);
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML.replace(/\n/g, '<br>');
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const userMessage = chatInput.value.trim();
+            if (!userMessage || isStreaming) return;
+
+            // Add user message
+            addUserMessage(userMessage);
+            chatInput.value = '';
+            
+            // Disable input while streaming
+            isStreaming = true;
+            chatInput.disabled = true;
+            sendButton.disabled = true;
+
+            // Add streaming indicator
+            const streamingDiv = addStreamingMessage();
+
+            try {
+                const response = await fetch('/.netlify/functions/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        messages: messages.map(m => ({
+                            role: m.role,
+                            content: m.content
+                        }))
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to get response');
+                }
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let accumulatedText = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value, { stream: true });
+                    accumulatedText += chunk;
+                    updateStreamingMessage(streamingDiv, accumulatedText);
+                }
+
+                // Remove streaming message and add final message
+                streamingDiv.remove();
+                addAssistantMessage(accumulatedText);
+
+                // Check if AI wants to submit the brief
+                if (accumulatedText.includes('SUBMIT_BRIEF||')) {
+                    await submitBrief();
+                }
+
+            } catch (error) {
+                console.error('Chat error:', error);
+                streamingDiv.remove();
+                addAssistantMessage("Sorry, something went wrong. Please try again.");
+            } finally {
+                isStreaming = false;
+                chatInput.disabled = false;
+                sendButton.disabled = false;
+                chatInput.focus();
+            }
+        });
+
+        async function submitBrief() {
+            try {
+                // Show submitting message
+                addAssistantMessage("✨ Perfect! I'm submitting your project brief now...");
+                
+                // Build full conversation text
+                const conversationText = messages.map(m => 
+                    `${m.role === 'user' ? 'Client' : 'Assistant'}: ${m.content}`
+                ).join('\n\n');
+
+                // Extract structured data using AI
+                const extractResponse = await fetch('/.netlify/functions/extract-brief', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        conversation: conversationText
+                    }),
+                });
+
+                if (!extractResponse.ok) {
+                    throw new Error('Failed to extract data');
+                }
+
+                const briefData = await extractResponse.json();
+
+                // Submit to Netlify form
+                const formData = new FormData();
+                formData.append('form-name', 'project-brief');
+                formData.append('name', briefData.name);
+                formData.append('company', briefData.company);
+                formData.append('email', briefData.email);
+                formData.append('business_type', briefData.business_type);
+                formData.append('project_needs', briefData.project_needs);
+                formData.append('budget', briefData.budget);
+                formData.append('timeline', briefData.timeline);
+                formData.append('full_conversation', conversationText);
+                formData.append('brief_summary', briefData.brief_summary);
+
+                const submitResponse = await fetch('/', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (submitResponse.ok) {
+                    addAssistantMessage("🎉 All set! Your project brief has been submitted. We'll be in touch soon at " + briefData.email + ". Thanks for chatting with me!");
+                    
+                    // Disable input after successful submission
+                    chatInput.disabled = true;
+                    sendButton.disabled = true;
+                    sendButton.textContent = 'Submitted';
+                } else {
+                    throw new Error('Form submission failed');
+                }
+
+            } catch (error) {
+                console.error('Submit error:', error);
+                addAssistantMessage("Oops! Something went wrong with the submission. Can you email us directly at hello@hofferstudios.com with your details?");
+            }
+        }
     </script>
 
 </body>
