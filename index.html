@@ -1128,15 +1128,15 @@
         async function submitBrief() {
             try {
                 // Show submitting message
-                addAssistantMessage("✨ Perfect! I'm submitting your project brief now...");
+                addAssistantMessage("✨ Perfect! I'm sending your project brief to our team now...");
                 
                 // Build full conversation text
                 const conversationText = messages.map(m => 
                     `${m.role === 'user' ? 'Client' : 'Assistant'}: ${m.content}`
                 ).join('\n\n');
 
-                // Extract structured data using AI
-                const extractResponse = await fetch('/.netlify/functions/extract-brief', {
+                // Send lead via email
+                const sendResponse = await fetch('/.netlify/functions/send-lead', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1146,76 +1146,30 @@
                     }),
                 });
 
-                if (!extractResponse.ok) {
-                    throw new Error('Failed to extract data');
+                if (!sendResponse.ok) {
+                    throw new Error('Failed to send lead');
                 }
 
-                const briefData = await extractResponse.json();
+                const result = await sendResponse.json();
 
-                // Submit to Netlify form
-                const formData = new FormData();
-                formData.append('form-name', 'project-brief');
-                formData.append('bot-field', ''); // Honeypot field
-                formData.append('name', briefData.name || 'N/A');
-                formData.append('company', briefData.company || 'N/A');
-                formData.append('email', briefData.email || 'N/A');
-                formData.append('business_type', briefData.business_type || 'N/A');
-                formData.append('project_needs', briefData.project_needs || 'N/A');
-                formData.append('budget', briefData.budget || 'N/A');
-                formData.append('timeline', briefData.timeline || 'N/A');
-                formData.append('full_conversation', conversationText);
-                formData.append('brief_summary', briefData.brief_summary || 'N/A');
-
-                const submitResponse = await fetch('/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams(formData).toString(),
-                });
-
-                if (submitResponse.ok) {
-                    addAssistantMessage("🎉 All set! Your project brief has been submitted. We'll be in touch soon at " + briefData.email + ". Thanks for chatting with me!");
+                if (result.success) {
+                    addAssistantMessage("🎉 All set! Your project brief has been sent to our team. We'll be in touch soon! Thanks for chatting with me!");
                     
                     // Disable input after successful submission
                     chatInput.disabled = true;
                     sendButton.disabled = true;
                     sendButton.textContent = 'Submitted';
                 } else {
-                    console.error('Form submission response:', submitResponse.status, submitResponse.statusText);
-                    throw new Error('Form submission failed');
+                    throw new Error('Failed to send lead');
                 }
 
             } catch (error) {
                 console.error('Submit error:', error);
-                addAssistantMessage("Oops! Something went wrong with the submission. Can you email us directly at hello@hofferstudios.com with your details?");
+                addAssistantMessage("Oops! Something went wrong with the submission. Can you email us directly at info@hofferstudios.com with your details?");
             }
         }
     </script>
 
-    <!-- Netlify Form for Brief Submission - Hidden with CSS -->
-    <form name="project-brief" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="netlify-form-hidden">
-        <input type="hidden" name="form-name" value="project-brief" />
-        <input type="text" name="bot-field" />
-        <input type="text" name="name" />
-        <input type="text" name="company" />
-        <input type="email" name="email" />
-        <input type="text" name="business_type" />
-        <input type="text" name="project_needs" />
-        <input type="text" name="budget" />
-        <input type="text" name="timeline" />
-        <textarea name="full_conversation"></textarea>
-        <textarea name="brief_summary"></textarea>
-    </form>
-
-    <style>
-        .netlify-form-hidden {
-            position: absolute;
-            left: -9999px;
-            opacity: 0;
-            pointer-events: none;
-        }
-    </style>
 
 </body>
 </html>
