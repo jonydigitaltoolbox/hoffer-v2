@@ -919,20 +919,6 @@
         });
     </script>
 
-    <!-- Hidden Netlify Form for Brief Submission -->
-    <form name="project-brief" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" style="display:none;">
-        <input type="hidden" name="form-name" value="project-brief" />
-        <input type="text" name="bot-field" />
-        <input type="text" name="name" />
-        <input type="text" name="company" />
-        <input type="email" name="email" />
-        <input type="text" name="business_type" />
-        <input type="text" name="project_needs" />
-        <input type="text" name="budget" />
-        <input type="text" name="timeline" />
-        <textarea name="full_conversation"></textarea>
-        <textarea name="brief_summary"></textarea>
-    </form>
 
     <!-- AI Chat Modal -->
     <div id="chatModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
@@ -1206,6 +1192,30 @@
             }
         }
     </script>
+
+    <!-- Netlify Form for Brief Submission - Hidden with CSS -->
+    <form name="project-brief" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="netlify-form-hidden">
+        <input type="hidden" name="form-name" value="project-brief" />
+        <input type="text" name="bot-field" />
+        <input type="text" name="name" />
+        <input type="text" name="company" />
+        <input type="email" name="email" />
+        <input type="text" name="business_type" />
+        <input type="text" name="project_needs" />
+        <input type="text" name="budget" />
+        <input type="text" name="timeline" />
+        <textarea name="full_conversation"></textarea>
+        <textarea name="brief_summary"></textarea>
+    </form>
+
+    <style>
+        .netlify-form-hidden {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
 
 </body>
 </html>
